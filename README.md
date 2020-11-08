@@ -23,11 +23,9 @@ That's your network created! All you need to do now is train it.
 Training the network is done using the multi-purpose function `float processNetwork(network* net, float* inputs, const learn_type learn);` which also performs queries on the network once it has been trained.
 
 `processNetwork()` has three learning types;
-```
-    LEARN_MAX
-    LEARN_MIN
-    NO_LEARN
-```
+- LEARN_MAX
+- LEARN_MIN
+- NO_LEARN
 
 When training a network you either want to train towards your target, typically of 1, or away from your target 0.
 - To train towards your target (1) you will use `LEARN_MAX` which will minimize the gradient descent, sloping down to a local minimum.
