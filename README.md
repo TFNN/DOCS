@@ -2,7 +2,7 @@
 
 I'm going to keep this simple and only refer to the use of [FCNNv1.h](https://github.com/TFCNN/TFCNNv1), as [FCNNv2.h](https://github.com/TFCNN/TFCNNv2) is currently work in progress, although it is very similar; one can infer the differences autonomously. 
 
-Alright so lets setup a network:
+**Alright so lets setup a network:**
 ```
 // let's create out network structure.
 network net;
@@ -18,7 +18,7 @@ setOptimiser(&net, MOMENTUM);
 setActivator(&net, TANH);
 ```
 
-So that's your network created ! All you need to do now is train it.
+That's your network created ! All you need to do now is train it.
 
 Training the network is done using the multi-purpose function `float processNetwork(network* net, float* inputs, const learn_type learn);` which also performs queries on the network once it has been trained.
 
