@@ -74,7 +74,7 @@ else
 destroyNetwork(&net);
 ```
 
-**Or reset the network,** allowing you to retrain it from a fresh state. Resetting it will retain your configured hyperparameters but re-initialise the weights back to the configured method of initialisation. _(we specified `WEIGHT_INIT_UNIFORM_LECUN` in `createNetwork()` at the beginning of this document)_
+**Or reset the network,** allowing you to retrain it from a fresh state. Resetting will retain your configured hyperparameters but re-initialise the weights back to the configured method of initialisation. _(we specified `WEIGHT_INIT_UNIFORM_LECUN` in `createNetwork()` at the beginning of this document)_
 ```
 resetNetwork(&net);
 ```
