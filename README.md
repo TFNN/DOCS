@@ -45,8 +45,8 @@ The network is trained using floating-point data as input, as we set up the netw
 
 In this case, each number would represent the normalised index of a word in a dictionary or word list, I have not provided a word list below just some theoretical examples of floating-points that would reference such a list.
 ```
-const float positive_words[10] = {0.9, 0.91, 0.8, 0.87, 0.73, 0.934, 0.67, 0.074, 0.703, 0.883};
-const float negative_words[10] = {0.1, 0.01, 0.2, 0.13, 0.142, 0.056, 0.21, 0.023, 0.31, 0.312};
+const float positive_words[10] = {0.1, 0.01, 0.2, 0.13, 0.142, 0.056, 0.21, 0.023, 0.31, 0.312};
+const float negative_words[10] = {0.9, 0.91, 0.8, 0.87, 0.73, 0.934, 0.67, 0.074, 0.703, 0.883};
 
 for(uint i = 0; i < 10; ++i)
 {
