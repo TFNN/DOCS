@@ -4,7 +4,7 @@ I'm going to keep this simple and only refer to the use of [FCNNv1.h](https://gi
 
 **Alright so lets set up a network:**
 ```
-// let's create our network structure.
+// let's create an instance of our network.
 network net;
 
 // and initialise the network ..
