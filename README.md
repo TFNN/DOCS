@@ -60,7 +60,7 @@ for(uint i = 0; i < 10; ++i)
 }
 ```
 
-Once the network is trained we can test words against it using the `NO_LEARN` parameter.
+**Once the network is trained we can test words against it using the `NO_LEARN` parameter.**
 ```
 const float input = 0.9;
 const float is_positive = processNetwork(&net, &input, NO_LEARN);
@@ -71,7 +71,7 @@ else
   printf("Looks like the input was negative -\n");
 ```
 
-Once you are done you can cleanup the network like so;
+**Once you are done you can cleanup the network like so;**
 ```
 destroyNetwork(&net);
 ```
