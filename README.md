@@ -24,9 +24,9 @@ Training the network is done using the multi-purpose function `float processNetw
 
 `processNetwork()` has three learning types;
 ```
-    LEARN_MAX = 1,
-    LEARN_MIN = 0,
-    NO_LEARN  = -1
+    LEARN_MAX
+    LEARN_MIN
+    NO_LEARN
 ```
 
 When training a network you either want to train towards your target, typically of 1, or away from your target 0.
