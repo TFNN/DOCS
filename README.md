@@ -1,6 +1,6 @@
 # How to use TFCNN
 
-I'm going to keep this simple and only refer to the use of [FCNNv1.h](https://github.com/TFCNN/TFCNNv1), as [FCNNv2.h](https://github.com/TFCNN/TFCNNv2) is currently work-in-progress, although it is very similar; one can infer the differences autonomously. 
+I'm going to keep this simple and only refer to the use of [TFCNNv1.h](https://github.com/TFCNN/TFCNNv1), as [TFCNNv2.h](https://github.com/TFCNN/TFCNNv2) is currently work-in-progress, although it is very similar; one can infer the differences autonomously. 
 
 **Alright so lets set up a network:**
 ```
