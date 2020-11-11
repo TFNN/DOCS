@@ -20,7 +20,7 @@ setActivator(&net, TANH);
 
 That's your network created! All you need to do now is train it.
 
-Training the network is done using the multi-purpose function `float processNetwork(network* net, float* inputs, const learn_type learn);` which also performs queries on the network once it has been trained.
+Training the network is done using the multi-purpose function `float processNetwork(network* net, const float* inputs, const learn_type learn);` which also performs queries on the network once it has been trained.
 
 `processNetwork()` has three learning types;
 - LEARN_MAX
