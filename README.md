@@ -51,10 +51,10 @@ const float negative_words[10] = {0.9, 0.91, 0.8, 0.87, 0.73, 0.934, 0.67, 0.074
 for(uint i = 0; i < 10; ++i)
 {
   // learn to output 1 for positive words
-  processNetwork(&net, positive_words[i], LEARN_MAX);
+  processNetwork(&net, &positive_words[i], LEARN_MAX);
 
   // learn to output 0 for negative words
-  processNetwork(&net, negative_words[i], LEARN_MIN);
+  processNetwork(&net, &negative_words[i], LEARN_MIN);
 }
 ```
 
