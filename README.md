@@ -14,7 +14,7 @@ const uint number_of_neurons_per_layer = 256;
 createNetwork(&net, WEIGHT_INIT_UNIFORM_LECUN, number_of_inputs, number_of_layers, number_of_neurons_per_layer);
 
 // maybe also you would like to change the default configured optimiser and activator
-setOptimiser(&net, MOMENTUM);
+setOptimiser(&net, OPTIM_MOMENTUM);
 setActivator(&net, TANH);
 ```
 
