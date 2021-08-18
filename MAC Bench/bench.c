@@ -67,7 +67,7 @@ int main()
 
     float input[2352];
     for(int i = 0; i < 2352; i++)
-        input[i] = ((float)(rand()%256)) / 256.f;
+        input[i] = rndFloat(); //((float)(rand()%256)) / 256.f;
 
     uint64_t st = microtime();
     uint64_t count = 0;
