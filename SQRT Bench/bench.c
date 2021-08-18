@@ -75,6 +75,6 @@ int main()
     printf("1,000,000 Exections Microseconds: %lu\n", microtime()-st);
 
 
-    printf("%.0f\n", ret); // forces the -Ofast mode to produce code containing sqrt
+    printf("\n%.0f\n", ret); // forces the -Ofast mode to produce code containing sqrt
     return 0;
 }
