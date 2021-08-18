@@ -1,21 +1,24 @@
+// with -Ofast enabled, both methods will optimise to rsqrtss
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
 #include <math.h>
 #include <string.h>
 #include <sys/time.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include <xmmintrin.h>
+
+static inline float isqrt(float f)
+{
+    return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_set_ss(f)));
+}
 
 static inline uint32_t rdtsc(void)
 {
     uint32_t a = 0;
     asm volatile( "rdtsc" :"=a"(a) ::"edx" );
     return a;
-}
-
-static inline float isqrt(float f)
-{
-    return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_set_ss(f)));
 }
 
 uint64_t microtime()
@@ -25,6 +28,16 @@ uint64_t microtime()
 	memset(&tz, 0, sizeof(struct timezone));
 	gettimeofday(&tv, &tz);
 	return 1000000 * tv.tv_sec + tv.tv_usec;
+}
+
+float rndFloat() // forces the -Ofast mode to produce code containing sqrt
+{
+    float ret = 0;
+    int f = open("/dev/urandom", O_RDONLY | O_CLOEXEC);
+    if(read(f, &ret, sizeof(float)) < 0)
+        return 0;
+    close(f);
+    return ret;
 }
 
 void ST1()
@@ -37,11 +50,11 @@ void ST1()
     float iv = 0;
     while(microtime()-st < 3000000)
     {
-        ret = 1 / sqrt(iv);
+        ret += 1 / sqrt(rndFloat());
         count++;
         iv += 0.1f;
     }
-    printf("FPU Executions:  %lu per microsecond\n", count / 3000000);
+    printf("FPU Executions:  %lu\n", count);
     
     // intrinsics
     st = microtime();
@@ -49,34 +62,41 @@ void ST1()
     iv = 0;
     while(microtime()-st < 3000000)
     {
-        ret = isqrt(iv);
+        ret += isqrt(rndFloat());
         count++;
         iv += 0.1f;
     }
-    printf("SIMD Executions: %lu per microsecond\n", count / 3000000);
+    printf("SIMD Executions: %lu\n", count);
+
+    printf("%.0f\n", ret);  // forces the -Ofast mode to produce code containing sqrt
 }
 
 void ST2()
 {
     float ret = 0;
-    float iv = 63;
+    uint32_t et = 0;
+    float iv = rndFloat();
 
     // fpu
     uint32_t st = rdtsc();
-    ret = 1 / sqrt(iv);
-    printf("FPU Cycles:  %u\n", rdtsc()-st);
+    //for(int i = 0; i < 100000; i++)
+        ret += 1 / sqrt(rndFloat());
+    et = rdtsc()-st;
+    printf("FPU Cycles:  %u\n", et);
     
     // intrinsics
-    iv = 63;
     st = rdtsc();
-    ret = isqrt(iv);
-    printf("SIMD Cycles: %u\n", rdtsc()-st);
+    //for(int i = 0; i < 100000; i++)
+        ret += isqrt(rndFloat());
+    et = rdtsc()-st;
+    printf("SIMD Cycles: %u\n", et);
+
+    printf("%.0f\n", ret);  // forces the -Ofast mode to produce code containing sqrt
 }
 
 int main()
 {
     ST1();
     ST2();
-
     return 0;
 }
