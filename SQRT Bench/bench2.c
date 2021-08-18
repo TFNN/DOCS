@@ -7,7 +7,10 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <locale.h>
 #include <xmmintrin.h>
+
+#pragma GCC diagnostic ignored "-Wunused-result"
 
 static inline float isqrt(float f)
 {
@@ -53,7 +56,7 @@ void ST1()
         count++;
         iv += 0.1f;
     }
-    printf("FPU Executions:  %lu\n", count);
+    printf("FPU Executions:  %'lu\n", count);
     
     // intrinsics
     st = microtime();
@@ -65,7 +68,7 @@ void ST1()
         count++;
         iv += 0.1f;
     }
-    printf("SIMD Executions: %lu\n", count);
+    printf("SIMD Executions: %'lu\n", count);
 
     printf("%.0f\n", ret);  // forces the -Ofast mode to produce code containing sqrt
 }
@@ -81,20 +84,21 @@ void ST2()
     //for(int i = 0; i < 100000; i++)
         ret += 1 / sqrt(rndFloat());
     et = rdtsc()-st;
-    printf("FPU Cycles:  %u\n", et);
+    printf("FPU Cycles:  %'u\n", et);
     
     // intrinsics
     st = rdtsc();
     //for(int i = 0; i < 100000; i++)
         ret += isqrt(rndFloat());
     et = rdtsc()-st;
-    printf("SIMD Cycles: %u\n", et);
+    printf("SIMD Cycles: %'u\n", et);
 
     printf("%.0f\n", ret);  // forces the -Ofast mode to produce code containing sqrt
 }
 
 int main()
 {
+    setlocale(LC_NUMERIC, "");
     ST1();
     ST2();
     return 0;
