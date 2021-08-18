@@ -41,6 +41,58 @@ FPU Cycles:  4,701
 SIMD Cycles: 4,927
 ```
 
+No optimisation a few times in a row:
+```
+./reg2
+FPU Executions:  1,759,833
+SIMD Executions: 1,752,094
+
+FPU Cycles:  6,558
+SIMD Cycles: 4,536
+
+./reg2
+FPU Executions:  1,739,897
+SIMD Executions: 1,759,603
+
+FPU Cycles:  4,962
+SIMD Cycles: 4,301
+
+./reg2
+FPU Executions:  1,736,354
+SIMD Executions: 1,735,781
+
+FPU Cycles:  8,679
+SIMD Cycles: 4,394
+
+./reg2
+FPU Executions:  1,741,070
+SIMD Executions: 1,734,509
+
+FPU Cycles:  6,201
+SIMD Cycles: 4,376
+
+./reg2
+FPU Executions:  1,762,834
+SIMD Executions: 1,746,352
+
+FPU Cycles:  6,525
+SIMD Cycles: 4,767
+
+./reg2
+FPU Executions:  1,755,283
+SIMD Executions: 1,700,055
+
+FPU Cycles:  7,480
+SIMD Cycles: 4,516
+
+./reg2
+FPU Executions:  1,718,544
+SIMD Executions: 1,678,173
+
+FPU Cycles:  8,026
+SIMD Cycles: 4,664
+```
+
 
 
 
