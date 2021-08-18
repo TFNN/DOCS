@@ -93,10 +93,4 @@ FPU Cycles:  8,026
 SIMD Cycles: 4,664
 ```
 
-
-
-
-
-
-
-
+There seems to be no need to manually invoke the use of SIMD [RSQRTSS](https://www.felixcloutier.com/x86/rsqrtss) if compiling with -Ofast.
