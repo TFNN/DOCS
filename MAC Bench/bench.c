@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <locale.h>
 #include <sys/time.h>
+#include <x86intrin.h>
 
 #pragma GCC diagnostic ignored "-Wunused-result"
 
@@ -32,13 +33,6 @@ float processModel(const float* input)
     return (out+7.6) * 0.065789474;
 }
 
-static inline uint32_t rdtsc(void)
-{
-    uint32_t a = 0;
-    asm volatile( "rdtsc" :"=a"(a) ::"edx" );
-    return a;
-}
-
 uint64_t microtime()
 {
 	struct timeval tv;
@@ -62,12 +56,11 @@ int main()
     setlocale(LC_NUMERIC, "");
 
     float ret = 0;
-    uint32_t et = 0;
     srand(8008135);
 
     float input[2352];
     for(int i = 0; i < 2352; i++)
-        input[i] = rndFloat(); //((float)(rand()%256)) / 256.f;
+        input[i] = rndFloat();
 
     uint64_t st = microtime();
     uint64_t count = 0;
@@ -83,10 +76,9 @@ int main()
         ret += processModel(&input[0]);
     printf("1,000,000 Exections Microseconds: %'lu\n", microtime()-st);
 
-    st = rdtsc();
+    st = __rdtsc();
     ret += processModel(&input[0]);
-    et = rdtsc()-st;
-    printf("Cycles: %'u\n", et);
+    printf("Cycles: %'llu\n", __rdtsc()-st);
 
     printf("\n%.0f\n", ret);  // forces the -Ofast mode to produce code containing sqrt
     return 0;
