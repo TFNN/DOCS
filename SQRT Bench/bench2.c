@@ -34,8 +34,7 @@ float rndFloat() // forces the -Ofast mode to produce code containing sqrt
 {
     float ret = 0;
     int f = open("/dev/urandom", O_RDONLY | O_CLOEXEC);
-    if(read(f, &ret, sizeof(float)) < 0)
-        return 0;
+    read(f, &ret, sizeof(float));
     close(f);
     return ret;
 }
