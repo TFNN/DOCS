@@ -11,7 +11,7 @@
 
 #pragma GCC diagnostic ignored "-Wunused-result"
 
-static inline float isqrt(float f)
+static inline float rsqrtss(float f)
 {
     return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_set_ss(f)));
 }
@@ -68,14 +68,14 @@ int main()
     count = 0;
     while(microtime()-st < 3000000)
     {
-        ret += isqrt(rndFloat());
+        ret += rsqrtss(rndFloat());
         count++;
     }
     printf("3 Seconds of Executions: %'lu\n", count);
     
     st = microtime();
     for(int i = 0; i < 1000000; i++)
-        ret += isqrt(rndFloat());
+        ret += rsqrtss(rndFloat());
     printf("1,000,000 Exections Microseconds: %'lu\n", microtime()-st);
 
 
