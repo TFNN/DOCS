@@ -27,11 +27,11 @@ float rndFloat() // forces the -Ofast mode to produce code containing sqrt
 
 uint64_t microtime()
 {
-	struct timeval tv;
-	struct timezone tz;
-	memset(&tz, 0, sizeof(struct timezone));
-	gettimeofday(&tv, &tz);
-	return 1000000 * tv.tv_sec + tv.tv_usec;
+    struct timeval tv;
+    struct timezone tz;
+    memset(&tz, 0, sizeof(struct timezone));
+    gettimeofday(&tv, &tz);
+    return 1000000 * tv.tv_sec + tv.tv_usec;
 }
 
 int main()
