@@ -59,14 +59,14 @@ int main()
     uint64_t count = 0;
     while(microtime()-st < 3000000)
     {
-        ret += 1 / sqrt(rndFloat());
+        ret += 1 / sqrt(rndFloat(0));
         count++;
     }
     printf("3 Seconds of Executions: %'lu\n", count);
     
     st = microtime();
     for(int i = 0; i < 1000000; i++)
-        ret += 1 / sqrt(rndFloat());
+        ret += 1 / sqrt(rndFloat(0));
     printf("1,000,000 Exections Microseconds: %'lu\n", microtime()-st);
 
     
@@ -78,14 +78,14 @@ int main()
     count = 0;
     while(microtime()-st < 3000000)
     {
-        ret += rsqrtss(rndFloat());
+        ret += rsqrtss(rndFloat(0));
         count++;
     }
     printf("3 Seconds of Executions: %'lu\n", count);
     
     st = microtime();
     for(int i = 0; i < 1000000; i++)
-        ret += rsqrtss(rndFloat());
+        ret += rsqrtss(rndFloat(0));
     printf("1,000,000 Exections Microseconds: %'lu\n", microtime()-st);
 
 
