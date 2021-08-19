@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <locale.h>
+#include <time.h>
 #include <sys/time.h>
 #include <x86intrin.h>
 
@@ -42,25 +43,31 @@ uint64_t microtime()
 	return 1000000 * tv.tv_sec + tv.tv_usec;
 }
 
-float rndFloat() // forces the -Ofast mode to produce code containing sqrt
+//https://stackoverflow.com/questions/55544564/what-is-the-max-value-for-float
+float rndFloat(const __int64_t seed) // forces the -Ofast mode to produce code containing sqrt
 {
-    float ret = 0;
-    int f = open("/dev/urandom", O_RDONLY | O_CLOEXEC);
-    read(f, &ret, sizeof(float));
-    close(f);
-    return ret;
+    static __int64_t q = 8008135;
+    if(seed != 0)
+        q = seed;
+
+    __m64 mm0 = _mm_cvtsi64_m64(q);
+    __m64 mm1 = _m_pshufw(mm0, 0x1E);
+    mm0 = _mm_add_pi32(mm0, mm1);
+    q = _m_to_int64(mm0);
+
+    _m_empty();
+    return q;
 }
 
 int main()
 {
+    rndFloat(time(0));
     setlocale(LC_NUMERIC, "");
-
     float ret = 0;
-    srand(8008135);
 
     float input[2352];
     for(int i = 0; i < 2352; i++)
-        input[i] = rndFloat();
+        input[i] = rndFloat(0);
 
     uint64_t st = microtime();
     uint64_t count = 0;
@@ -80,6 +87,6 @@ int main()
     ret += processModel(&input[0]);
     printf("Cycles: %'llu\n", __rdtsc()-st);
 
-    printf("\n%.0f\n", ret);  // forces the -Ofast mode to produce code containing sqrt
+    printf("%c\n", (char)ret); // forces the -Ofast mode to produce code containing sqrt
     return 0;
 }
