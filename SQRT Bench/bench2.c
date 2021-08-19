@@ -12,7 +12,7 @@
 
 #pragma GCC diagnostic ignored "-Wunused-result"
 
-static inline float isqrt(float f)
+static inline float rsqrtss(float f)
 {
     return _mm_cvtss_f32(_mm_rsqrt_ss(_mm_set_ss(f)));
 }
@@ -64,7 +64,7 @@ void ST1()
     iv = 0;
     while(microtime()-st < 3000000)
     {
-        ret += isqrt(rndFloat());
+        ret += rsqrtss(rndFloat());
         count++;
         iv += 0.1f;
     }
@@ -89,7 +89,7 @@ void ST2()
     // intrinsics
     st = rdtsc();
     //for(int i = 0; i < 100000; i++)
-        ret += isqrt(rndFloat());
+        ret += rsqrtss(rndFloat());
     et = rdtsc()-st;
     printf("SIMD Cycles: %'u\n", et);
 
