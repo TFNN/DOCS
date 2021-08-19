@@ -61,7 +61,7 @@ void ST1()
     float iv = 0;
     while(microtime()-st < 3000000)
     {
-        ret += 1 / sqrt(rndFloat());
+        ret += 1 / sqrt(rndFloat(0));
         count++;
         iv += 0.1f;
     }
@@ -73,7 +73,7 @@ void ST1()
     iv = 0;
     while(microtime()-st < 3000000)
     {
-        ret += rsqrtss(rndFloat());
+        ret += rsqrtss(rndFloat(0));
         count++;
         iv += 0.1f;
     }
@@ -86,19 +86,19 @@ void ST2()
 {
     float ret = 0;
     uint32_t et = 0;
-    float iv = rndFloat();
+    float iv = 0;
 
     // fpu
     uint32_t st = rdtsc();
     //for(int i = 0; i < 100000; i++)
-        ret += 1 / sqrt(rndFloat());
+        ret += 1 / sqrt(rndFloat(0));
     et = rdtsc()-st;
     printf("FPU Cycles:  %'u\n", et);
     
     // intrinsics
     st = rdtsc();
     //for(int i = 0; i < 100000; i++)
-        ret += rsqrtss(rndFloat());
+        ret += rsqrtss(rndFloat(0));
     et = rdtsc()-st;
     printf("SIMD Cycles: %'u\n", et);
 
