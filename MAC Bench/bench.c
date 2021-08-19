@@ -43,7 +43,6 @@ uint64_t microtime()
 	return 1000000 * tv.tv_sec + tv.tv_usec;
 }
 
-//https://stackoverflow.com/questions/55544564/what-is-the-max-value-for-float
 float rndFloat(const __int64_t seed) // forces the -Ofast mode to produce code containing sqrt
 {
     static __int64_t q = 8008135;
