@@ -3,8 +3,6 @@
 #include <stdint.h>
 #include <math.h>
 #include <string.h>
-#include <unistd.h>
-#include <fcntl.h>
 #include <locale.h>
 #include <time.h>
 #include <sys/time.h>
