@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
 #include <sys/time.h>
 #include <locale.h>
 #include <xmmintrin.h>
