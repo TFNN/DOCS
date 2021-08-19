@@ -5,8 +5,6 @@
 #include <math.h>
 #include <string.h>
 #include <sys/time.h>
-#include <unistd.h>
-#include <fcntl.h>
 #include <locale.h>
 #include <xmmintrin.h>
 
@@ -33,13 +31,24 @@ uint64_t microtime()
     return 1000000 * tv.tv_sec + tv.tv_usec;
 }
 
-float rndFloat() // forces the -Ofast mode to produce code containing sqrt
+
+// adapted from ogre3d asm_math.h
+// https://www.flipcode.com/archives/07-15-2002.shtml
+// https://www.cs.cmu.edu/afs/andrew/scs/cs/oldfiles/15-494-sp09/dst/A/sw/ogre-1.6.4/OgreMain/include/asm_math.h
+// https://gist.github.com/mrbid/51ed2963c88981452a5f87a3b072f8fb#file-random_float_bench-c-L71
+float rndFloat(const __int64_t seed) // forces the -Ofast mode to produce code containing sqrt
 {
-    float ret = 0;
-    int f = open("/dev/urandom", O_RDONLY | O_CLOEXEC);
-    read(f, &ret, sizeof(float));
-    close(f);
-    return ret;
+    static __int64_t q = 8008135;
+    if(seed != 0)
+        q = seed;
+
+    __m64 mm0 = _mm_cvtsi64_m64(q);
+    __m64 mm1 = _m_pshufw(mm0, 0x1E);
+    mm0 = _mm_add_pi32(mm0, mm1);
+    q = _m_to_int64(mm0);
+
+    _m_empty();
+    return q;
 }
 
 void ST1()
@@ -98,6 +107,7 @@ void ST2()
 
 int main()
 {
+    rndFloat(time(0));
     setlocale(LC_NUMERIC, "");
     ST1();
     ST2();
