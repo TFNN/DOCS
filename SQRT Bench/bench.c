@@ -56,7 +56,7 @@ int main()
 
     uint64_t st = microtime();
     uint64_t count = 0;
-    while(microtime()-st < 3000000)
+    while(microtime()-st < 16000000)
     {
         ret += 1 / sqrt(rndFloat(0));
         count++;
@@ -64,9 +64,9 @@ int main()
     printf("3 Seconds of Executions: %'lu\n", count);
     
     st = microtime();
-    for(int i = 0; i < 1000000; i++)
+    for(int i = 0; i < 16000000; i++)
         ret += 1 / sqrt(rndFloat(0));
-    printf("1,000,000 Exections Microseconds: %'lu\n", microtime()-st);
+    printf("16,000,000 Exections Microseconds: %'lu\n", microtime()-st);
 
     
     // intrinsics
@@ -75,7 +75,7 @@ int main()
 
     st = microtime();
     count = 0;
-    while(microtime()-st < 3000000)
+    while(microtime()-st < 16000000)
     {
         ret += rsqrtss(rndFloat(0));
         count++;
@@ -83,12 +83,12 @@ int main()
     printf("3 Seconds of Executions: %'lu\n", count);
     
     st = microtime();
-    for(int i = 0; i < 1000000; i++)
+    for(int i = 0; i < 16000000; i++)
         ret += rsqrtss(rndFloat(0));
-    printf("1,000,000 Exections Microseconds: %'lu\n", microtime()-st);
+    printf("16,000,000 Exections Microseconds: %'lu\n", microtime()-st);
 
 
-    printf("\n%.0f\n", ret); // forces the -Ofast mode to produce code containing sqrt
+    printf("%c\n", (char)ret); // forces the -Ofast mode to produce code containing sqrt
 
     return 0;
 }
