@@ -61,7 +61,7 @@ int main()
         ret += 1 / sqrt(rndFloat(0));
         count++;
     }
-    printf("3 Seconds of Executions: %'lu\n", count);
+    printf("16 Seconds of Executions: %'lu\n", count);
     
     st = microtime();
     for(int i = 0; i < 16000000; i++)
@@ -80,7 +80,7 @@ int main()
         ret += rsqrtss(rndFloat(0));
         count++;
     }
-    printf("3 Seconds of Executions: %'lu\n", count);
+    printf("16 Seconds of Executions: %'lu\n", count);
     
     st = microtime();
     for(int i = 0; i < 16000000; i++)
