@@ -60,7 +60,7 @@ void ST1()
     uint64_t st = microtime();
     uint64_t count = 0;
     float iv = 0;
-    while(microtime()-st < 3000000)
+    while(microtime()-st < 16000000)
     {
         ret += 1 / sqrt(rndFloat(0));
         count++;
@@ -72,7 +72,7 @@ void ST1()
     st = microtime();
     count = 0;
     iv = 0;
-    while(microtime()-st < 3000000)
+    while(microtime()-st < 16000000)
     {
         ret += rsqrtss(rndFloat(0));
         count++;
@@ -80,7 +80,7 @@ void ST1()
     }
     printf("SIMD Executions: %'lu\n", count);
 
-    printf("%.0f\n", ret);  // forces the -Ofast mode to produce code containing sqrt
+    printf("%c\n", (char)ret);  // forces the -Ofast mode to produce code containing sqrt
 }
 
 void ST2()
@@ -103,7 +103,7 @@ void ST2()
     et = rdtsc()-st;
     printf("SIMD Cycles: %'u\n", et);
 
-    printf("%.0f\n", ret);  // forces the -Ofast mode to produce code containing sqrt
+    printf("%c\n", (char)ret);  // forces the -Ofast mode to produce code containing sqrt
 }
 
 int main()
