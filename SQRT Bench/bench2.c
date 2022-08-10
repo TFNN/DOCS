@@ -1,3 +1,4 @@
+// https://github.com/TFCNN/DOCS
 // with -Ofast enabled, both methods will optimise to rsqrtss
 #include <stdio.h>
 #include <stdlib.h>
