@@ -1,4 +1,4 @@
-// https://github.com/TFCNN/DOCS
+// https://github.com/TFNN/DOCS
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
