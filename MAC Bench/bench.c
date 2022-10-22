@@ -89,6 +89,6 @@ int main()
     ret += processModel(&input[0]);
     printf("Cycles: %'llu\n", __rdtsc()-st);
 
-    printf("%c\n", (char)ret); // forces the -Ofast mode to produce code containing sqrt
+    printf("%c\n", (char)ret); // forces the compiler to not disregard the functions we are testing
     return 0;
 }
