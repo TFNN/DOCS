@@ -1,4 +1,5 @@
 // https://github.com/TFNN/DOCS
+// slightly improved version of this code at: https://gist.github.com/mrbid/078f00cf2ef29dc358dba2832213ef44
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
